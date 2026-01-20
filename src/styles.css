@@ -1,0 +1,195 @@
+/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* ================= ROOT THEME ================= */
+:root {
+  --bg: #f4f6ff;
+  --card: #ffffff;
+  --text: #111827;
+  --yellow: #fde68a;
+  --green: #22c55e;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e5e7eb;
+}
+
+/* ================= GLOBAL RESET ================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #7687d2; /* darker blue base */
+  color: #e5e7eb;
+  overflow-x: hidden;
+}
+
+/* ===== Animated Background ===== */
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #020617, #020617);
+}
+
+.bg-animation span {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.35), transparent 70%);
+  animation: float 25s infinite linear;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.bg-animation span:nth-child(1) {
+  top: -200px;
+  left: -200px;
+  animation-duration: 30s;
+}
+
+.bg-animation span:nth-child(2) {
+  bottom: -250px;
+  right: -150px;
+  animation-duration: 35s;
+}
+
+.bg-animation span:nth-child(3) {
+  top: 40%;
+  left: 60%;
+  animation-duration: 40s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(120px, -80px) scale(1.1);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+body.dark .bg-animation span {
+  background: radial-gradient(circle, rgba(34,197,94,0.25), transparent 70%);
+}
+
+
+/* ================= PAGE LAYOUT ================= */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 120px;
+  text-align: center;
+}
+
+/* ================= TITLE ================= */
+h1 {
+  font-size: 42px;
+  margin-bottom: 40px;
+}
+
+/* ================= INPUT CARD ================= */
+.input-wrapper {
+  background: var(--card);
+  padding: 28px;
+  border-radius: 18px;
+  width: 600px;
+  max-width: 85%;
+  overflow: hidden; /* 👈 IMPORTANT */
+  box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+  transition: transform 0.3s ease;
+}
+
+
+.input-wrapper:hover {
+  transform: translateY(-10px) scale(1.01);
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  resize: none;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 18px;
+  background: #020617;
+  color: white;
+  display: block;
+}
+
+
+body.dark textarea {
+  background: #020617;
+  color: white;
+}
+
+/* ================= BUTTON ================= */
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: var(--yellow);
+  transition: all 0.25s ease;
+}
+
+button:hover:not(:disabled),
+button:active:not(:disabled) {
+  background: var(--green);
+  color: white;
+}
+button:active {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= OUTPUT ================= */
+.output {
+  background: #ffffff;          /* solid white */
+  color: #111827;               /* dark text */
+  opacity: 1 !important;        /* kill fade */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border-radius: 18px;
+  padding: 28px 32px;
+  margin-top: 48px; 
+}
+
+.output ul {
+  margin-top: 18px;
+  padding-left: 22px;
+}
+
+.output li {
+  color: #1f2937;   /* readable gray */
+  line-height: 1.8;
+  font-size: 15.5px;
+  margin-bottom: 20px;
+}
+
+/* ================= DARK MODE TOGGLE ================= */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}

@@ -1,0 +1,46 @@
+<div class="bg-animation">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="background"></div>
+
+<div class="theme-toggle">
+  <label>
+    <input type="checkbox" (change)="toggleTheme()" />
+    🌙 Dark Mode
+  </label>
+</div>
+
+<div class="page">
+  <h1>Your GenAI Agent</h1>
+
+  <div class="input-wrapper">
+    <textarea
+      [(ngModel)]="task"
+      placeholder="Describe what you want the AI to do..."
+      rows="4"
+    ></textarea>
+
+    <button
+      (click)="generatePlan()"
+      [disabled]="loading || !task.trim()"
+    >
+      Generate Plan
+    </button>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    Generating…
+  </div>
+
+  <div class="output" *ngIf="plan">
+    <h2>{{ plan.title }}</h2>
+
+    <ul>
+      <li *ngFor="let step of plan.steps">{{ step }}</li>
+    </ul>
+
+    <p class="time">⏱ {{ plan.estimated_time }}</p>
+  </div>
+</div>
